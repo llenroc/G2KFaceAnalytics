@@ -1,0 +1,40 @@
+﻿<Window x:Class="K4W.Face.Analytics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="720" Width="1000" Icon="Resources/icon.png"
+        Title="Kinecting for Windows - First look at Expressions">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120px" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel  Margin="10" Orientation="Horizontal">
+            <!-- Logo -->
+            <Image Source="Resources/k4w.png" HorizontalAlignment="Left" VerticalAlignment="Center" MaxHeight="100" Height="100" Width="135" />
+
+            <!-- Title -->
+            <TextBlock Text="Second Generation Kinect - Face Analytics" VerticalAlignment="Center" FontSize="19" FontWeight="Bold" Margin="10" Foreground="#FF2A2A2A" Grid.Column="1" Height="25" />
+        </StackPanel>
+
+        <!-- Seperator -->
+        <Rectangle x:Name="Seperator" Fill="Black" Grid.Row="1" />
+
+        <!-- Content -->
+        <Grid x:Name="Content" Grid.Row="2">
+            <!-- Camera output -->
+            <Image x:Name="CameraImage" Width="960" Height="540" Grid.RowSpan="8" RenderTransformOrigin="0.5,0.5" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                        <SkewTransform AngleY="0" AngleX="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
+    </Grid>
+</Window>
