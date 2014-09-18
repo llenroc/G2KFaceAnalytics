@@ -52,7 +52,7 @@ namespace K4W.Face.Analytics
         /// <summary>
         /// Output folder for the analytics
         /// </summary>
-        private string _analyticsFolder = "C:/Temp";
+        private string _analyticsFolder = "C:/Temp/Analytics";
 
         /// <summary>
         /// Default CTOR
@@ -149,6 +149,10 @@ namespace K4W.Face.Analytics
         /// <param name="fa"></param>
         private void OnFaceAnalyticsAvailable(FaceAnalytics fa)
         {
+            // Close reader for this body
+            _trackers[fa.BodyId].Close();
+            _trackers.Remove(fa.BodyId);
+
             // Compose filename
             string fileName = string.Format("{0}/Face-Tracking-{1}.xml", _analyticsFolder, fa.BodyId);
 

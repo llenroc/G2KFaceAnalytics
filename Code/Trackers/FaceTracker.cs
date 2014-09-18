@@ -83,11 +83,7 @@ namespace K4W.Face.Analytics.Trackers
             // _kinectId = kinect.UniqueKinectId --> NotImplementedYet
 
             // Create a new source with body TrackingId
-            _faceSource = new FaceFrameSource(kinect)
-            {
-                FaceFrameFeatures = _faceFeatures,
-                TrackingId = bodyId
-            };
+            _faceSource = new FaceFrameSource(kinect, bodyId, faceFeatures);
 
             // Create new reader
             _faceReader = _faceSource.OpenReader();
@@ -191,6 +187,15 @@ namespace K4W.Face.Analytics.Trackers
         public event FaceAnalyticsAvailableHandler FaceAnalyticsAvailable;
         public delegate void FaceAnalyticsAvailableHandler(FaceAnalytics fa);
 
+
+        /// <summary>
+        /// Close the readers
+        /// </summary>
+        public void Close()
+        {
+            _faceReader.Dispose();
+            _faceSource.Dispose();
+        }
 
         /// <summary>
         /// Overrride Equals
